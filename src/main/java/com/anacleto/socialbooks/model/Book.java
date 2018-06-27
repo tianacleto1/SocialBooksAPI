@@ -22,7 +22,7 @@ public class Book {
 	private Date publicationDate;
 	
 	@JsonInclude(Include.NON_NULL)
-	private String publishing;
+	private String publisher;
 	
 	@JsonInclude(Include.NON_NULL)
 	private String summary;
@@ -58,12 +58,12 @@ public class Book {
 		this.publicationDate = publicationDate;
 	}
 	
-	public String getPublishing() {
-		return publishing;
+	public String getPublisher() {
+		return publisher;
 	}
 	
-	public void setPublishing(String publishing) {
-		this.publishing = publishing;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 	
 	public String getSummary() {
