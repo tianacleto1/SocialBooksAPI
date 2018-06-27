@@ -2,14 +2,21 @@ package com.anacleto.socialbooks.model;
 
 import java.util.Date;
 import java.util.List;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+@Entity
 public class Book {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	private String bookName;
 	
 	@JsonInclude(Include.NON_NULL)
 	private Date publicationDate;
@@ -20,6 +27,7 @@ public class Book {
 	@JsonInclude(Include.NON_NULL)
 	private String summary;
 	
+	@Transient
 	@JsonInclude(Include.NON_NULL)
 	private List<Review> reviews;
 	
@@ -34,12 +42,12 @@ public class Book {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
+	public String getBookName() {
+		return bookName;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 	
 	public Date getPublicationDate() {

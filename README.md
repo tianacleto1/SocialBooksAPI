@@ -5,3 +5,4 @@ Technologies used:
 	Maven
 	Spring Boot - 2.0.3
 	Spring MVC
+	Spring Data JPA
