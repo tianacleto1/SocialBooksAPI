@@ -3,14 +3,27 @@ package com.anacleto.socialbooks.model;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class Book {
 
 	private Long id;
 	private String name;
+	
+	@JsonInclude(Include.NON_NULL)
 	private Date publicationDate;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String publishing;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String summary;
+	
+	@JsonInclude(Include.NON_NULL)
 	private List<Review> reviews;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String author;
 
 	public Long getId() {
