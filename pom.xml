@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>SocialBooksAPI</name>
-	<description>Social API for book comments integration</description>
+	<description>Social API for book reviews integration</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
