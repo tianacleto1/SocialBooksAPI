@@ -11,5 +11,4 @@ public class BooksResources {
 	public String list() {
 		return "Rest Applied, GIT Step By Step";
 	}
-
 }

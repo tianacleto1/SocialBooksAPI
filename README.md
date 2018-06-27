@@ -1,7 +1,7 @@
 # SocialBooksAPI
 This is a REST API for Books Comments Integration
 
-Tecnologies used:
+Technologies used:
 	Maven
-	Spring Boot
+	Spring Boot - 2.0.3
 	Spring MVC
