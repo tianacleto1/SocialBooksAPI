@@ -2,7 +2,6 @@ package com.anacleto.socialbooks.resources;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,5 +31,10 @@ public class BooksResources {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Optional<Book> getBookById(@PathVariable("id") Long id) {
 		return booksRepository.findById(id);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void deleteBook(@PathVariable("id") Long id) {
+		booksRepository.deleteById(id);
 	}
 }
