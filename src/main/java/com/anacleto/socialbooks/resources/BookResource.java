@@ -41,24 +41,14 @@ public class BookResource {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getBookById(@PathVariable("id") Long id) {
-		Book book = null;
+		Book book = bookService.getById(id);
 		
-		try {
-		    book = bookService.getById(id);
-		} catch (BookNotFoundException e) {
-			return ResponseEntity.notFound().build();
-		}
-
 		return ResponseEntity.status(HttpStatus.OK).body(book);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteBook(@PathVariable("id") Long id) {
-		try {
-			bookService.delete(id);
-		} catch (BookNotFoundException e) {
-			return ResponseEntity.notFound().build();
-		}
+		bookService.delete(id);
 		
 		return ResponseEntity.noContent().build();
 	}
@@ -66,14 +56,8 @@ public class BookResource {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT) 
 	public ResponseEntity<Void> updateBook(@RequestBody Book book, @PathVariable("id") Long id) {
 		book.setId(id);
-		
-		try {
-		    bookService.update(book);
-		} catch (BookNotFoundException e) {
-			return ResponseEntity.notFound().build();
-		}
+		bookService.update(book);
 		
 		return ResponseEntity.noContent().build();
 	}
-	
 }
