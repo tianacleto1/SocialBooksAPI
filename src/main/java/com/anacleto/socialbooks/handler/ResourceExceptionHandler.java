@@ -1,12 +1,10 @@
 package com.anacleto.socialbooks.handler;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import com.anacleto.socialbooks.model.ErrorDetail;
 import com.anacleto.socialbooks.service.exception.BookNotFoundException;
 

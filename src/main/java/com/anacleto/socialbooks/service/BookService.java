@@ -1,11 +1,14 @@
 package com.anacleto.socialbooks.service;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import com.anacleto.socialbooks.model.Book;
+import com.anacleto.socialbooks.model.Review;
 import com.anacleto.socialbooks.repository.BookRepository;
+import com.anacleto.socialbooks.repository.ReviewRepository;
 import com.anacleto.socialbooks.service.exception.BookNotFoundException;
 
 @Service
@@ -13,6 +16,9 @@ public class BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Autowired
+	private ReviewRepository reviewRepository;
 	
 	public List<Book> getAll() {
 		return bookRepository.findAll();
@@ -50,5 +56,14 @@ public class BookService {
 	
 	private void checkBookExistence(Book book) {
 		getById(book.getId());
+	}
+	
+	public Review saveReview(Long bookId, Review review) {
+		Book book = getById(bookId);
+		
+		review.setBook(book);
+		review.setDate(new Date());
+		
+		return reviewRepository.save(review);
 	}
 }

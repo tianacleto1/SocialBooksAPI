@@ -3,7 +3,6 @@ package com.anacleto.socialbooks.resources;
 import java.net.URI;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.anacleto.socialbooks.model.Book;
+import com.anacleto.socialbooks.model.Review;
 import com.anacleto.socialbooks.service.BookService;
-import com.anacleto.socialbooks.service.exception.BookNotFoundException;
 
 @RestController
 @RequestMapping("/books")
@@ -59,5 +58,14 @@ public class BookResource {
 		bookService.update(book);
 		
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "{id}/review", method = RequestMethod.POST)
+	public ResponseEntity<Void> addReview(@PathVariable("id") Long bookId, @RequestBody Review review) {
+		bookService.saveReview(bookId, review);
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
+		
+		return ResponseEntity.created(uri).build();
 	}
 }
