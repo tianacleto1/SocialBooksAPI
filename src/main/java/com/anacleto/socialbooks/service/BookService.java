@@ -24,7 +24,7 @@ public class BookService {
 		return bookRepository.findAll();
 	}
 	
-	public Book getById(Long id) {
+	public Book getBookById(Long id) {
 		Book book = bookRepository.getById(id);
 		
 		if (book == null) {
@@ -55,15 +55,21 @@ public class BookService {
 	}
 	
 	private void checkBookExistence(Book book) {
-		getById(book.getId());
+		getBookById(book.getId());
 	}
 	
 	public Review saveReview(Long bookId, Review review) {
-		Book book = getById(bookId);
+		Book book = getBookById(bookId);
 		
 		review.setBook(book);
 		review.setDate(new Date());
 		
 		return reviewRepository.save(review);
+	}
+	
+	public List<Review> getReviewsByBookId(Long bookId) {
+		Book book = getBookById(bookId);
+		
+		return book.getReviews();
 	}
 }

@@ -40,7 +40,7 @@ public class BookResource {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getBookById(@PathVariable("id") Long id) {
-		Book book = bookService.getById(id);
+		Book book = bookService.getBookById(id);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(book);
 	}
@@ -60,12 +60,19 @@ public class BookResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value = "{id}/review", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/reviews", method = RequestMethod.POST)
 	public ResponseEntity<Void> addReview(@PathVariable("id") Long bookId, @RequestBody Review review) {
 		bookService.saveReview(bookId, review);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 		
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value = "/{id}/reviews", method = RequestMethod.GET)
+	public ResponseEntity<List<Review>> listRevews(@PathVariable("id") Long bookId) {
+		List<Review> reviews = bookService.getReviewsByBookId(bookId);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(reviews);
 	}
 }
