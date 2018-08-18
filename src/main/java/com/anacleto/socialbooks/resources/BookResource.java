@@ -23,7 +23,7 @@ public class BookResource {
 	private BookService bookService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Book>> list() {
+	public ResponseEntity<List<Book>> getBooks() {
 		return ResponseEntity.status(HttpStatus.OK).body(bookService.getAll());
 	}
 	

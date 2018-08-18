@@ -3,11 +3,15 @@ package com.anacleto.socialbooks.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -34,8 +38,10 @@ public class Book implements Serializable {
 	@JsonInclude(Include.NON_NULL)
 	private List<Review> reviews;
 	
+	@ManyToOne
+	@JoinColumn(name = "AUTHOR_ID")
 	@JsonInclude(Include.NON_NULL)
-	private String author;
+	private Author author;
 
 	public Long getId() {
 		return id;
@@ -85,11 +91,11 @@ public class Book implements Serializable {
 		this.reviews = reviews;
 	}
 	
-	public String getAuthor() {
+	public Author getAuthor() {
 		return author;
 	}
 	
-	public void setAuthor(String author) {
+	public void setAuthor(Author author) {
 		this.author = author;
 	}
 }
